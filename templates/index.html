@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Demos and Documentation</title>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.css" />
+	<link rel="stylesheet" href="/static/css/jqm-docs.css"/>
+	<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+	<script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+	<script src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+	<script src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
+	<!--<script src="/static/js/jquery.mobile.themeswitcher.js"></script>-->
+	<!--<script src="/static/js/jqm-docs.js"></script>-->
+	<script src="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.js"></script>
+	<script src="/static/js/app.js"></script>
+
+</head> 
+<body> 
+	<script language="javascript">
+	    $(document).ready(function(){
+		    initialize_app({conf_id: '1', tw_kwd: 'pyconindia'});		
+	    });
+	</script>
+<!--<div data-role="page" class="type-home">-->
+<div data-role="page" class="type-interior">
+
+	<style>	
+		.nav-glyphish-example .ui-btn .ui-btn-inner { padding-top: 40px !important; }
+		.nav-glyphish-example .ui-btn .ui-icon { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: none !important; border-radius: none !important; }
+		#chat .ui-icon { background:  url(/static/glyphish-icons/09-chat2.png) 50% 50% no-repeat; background-size: 24px 22px; }
+		## email .ui-icon { background:  url(/static/glyphish-icons/18-envelope.png) 50% 50% no-repeat; background-size: 24px 16px;  }
+		#login .ui-icon { background:  url(/static/glyphish-icons/30-key.png) 50% 50% no-repeat;  background-size: 12px 26px; }
+		#beer .ui-icon { background:  url(/static/glyphish-icons/88-beermug.png) 50% 50% no-repeat;  background-size: 22px 27px; }
+		#coffee .ui-icon { background:  url(/static/glyphish-icons/100-coffee.png) 50% 50% no-repeat;  background-size: 20px 24px; }
+		#skull .ui-icon { background:  url(/static/glyphish-icons/21-skull.png) 50% 50% no-repeat;  background-size: 22px 24px; }
+		#schedule .ui-icon { background:  url(/static/stopwatch.png) 50% 50% no-repeat;  background-size: 22px 24px; }
+		#email .ui-icon { background:  url(/static/chart-2.png) 50% 50% no-repeat; background-size: 24px 16px;  }
+	</style>
+	<!--<div data-role="header" class="nav-glyphish-example" data-position="fixed">-->
+	    <!--<h1> ${c.conf.title} </h1>-->
+
+	<!--</div>-->
+	
+	<div data-role="header" class="nav-glyphish-example" data-position="fixed">
+	    <h1> ${c.conf.title} </h1>
+		<div id="nav-bar" data-role="navbar" class="nav-glyphish-example" data-grid="a">
+		<ul>
+			<li id="schedule"><a href="#" id="schedule" data-icon="grid" class="ui-btn-active">Schedule</a></li>
+			<li id="twitter"><a href="#" id="email" data-icon="chat">Twitter</a></li>
+			<!--<li id="info"><a href="#" id="beer" data-icon="custom">Info</a></li>-->
+			<!--<li id="speakers"><a href="#" id="skull" data-icon="custom">Speakers</a></li>-->
+			<!--<li id="sponsors"><a href="#" id="coffee" data-icon="custom">Sponsors</a></li>-->
+		</ul>
+		</div>
+	</div>
+	<!--<div data-role="footer" class="nav-glyphish-example footer-docs">-->
+	<div data-role="content">
+		<!--<div class="content-secondary">-->
+		<!--<div>-->
+			<!--<div id="jqm-homeheader">-->
+				<!--<h1 id="jqm-logo"><img src="/static/images/jquery-logo.png" alt="jQuery Mobile Framework" /></h1>-->
+				<!--<p>A Touch-Optimized Web Framework for Smartphones &amp; Tablets</p>-->
+				<!--<p id="jqm-version">Beta Release</p>-->
+			<!--</div>-->
+			<!--<p class="intro"><strong>Welcome.</strong> Browse the jQuery Mobile components and learn how to make rich, accessible, touch-friendly websites and apps.</p>-->
+			<div id="session-view" style="display:none; padding-top: 15px; padding-left:5px; padding-right:5px;">
+			    <ul id="session-list" date-role="listview">
+			    </ul>
+			</div>
+			<div id="twitter-view" style="display:none;">
+			    <ul id="tweet-list" date-role="listview" >
+			    </ul>
+			</div>
+			<div id="speaker-view" style="display:none">
+			    <ul id="speaker-list" date-role="listview">
+			    </ul>
+			</div>
+			<!--<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="f">-->
+				<!--<li data-role="list-divider">Overview</li>-->
+				<!--<li><a href="docs/about/intro.html">Intro to jQuery Mobile</a></li>-->
+				<!--<li><a href="docs/about/features.html">Features</a></li>-->
+				<!--<li><a href="docs/about/accessibility.html">Accessibility</a></li>-->
+				<!--<li><a href="docs/about/platforms.html">Supported platforms</a></li>-->
+			<!--</ul>-->
+			
+		<!--</div>-->
+		<!--/content-primary-->	
+		
+		<!--<div class="content-primary">-->
+			<!--<nav>-->
+				
+		
+				<!--<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">-->
+					<!--<li data-role="list-divider">Components</li>-->
+					<!--<li><a href="docs/pages/index.html">Pages &amp; dialogs</a></li>-->
+					<!--<li><a href="docs/toolbars/index.html">Toolbars</a></li>-->
+					<!--<li><a href="docs/buttons/index.html">Buttons</a></li>-->
+					<!--<li><a href="docs/content/index.html">Content formatting</a></li>-->
+					<!--<li><a href="docs/forms/index.html">Form elements</a></li>-->
+					<!--<li><a href="docs/lists/index.html">List views</a></li>-->
+					
+					<!--<li data-role="list-divider">API</li>-->
+					<!--<li><a href="docs/api/globalconfig.html">Configuring defaults</a></li>-->
+					<!--<li><a href="docs/api/events.html">Events</a></li>-->
+					<!--<li><a href="docs/api/methods.html">Methods &amp; Utilities</a></li>-->
+					<!--<li><a href="docs/api/mediahelpers.html">Responsive Layout</a></li>-->
+					<!--<li><a href="docs/api/themes.html">Theme framework</a></li>-->
+		
+				
+				<!--</ul>-->
+			<!--</nav>-->
+		<!--</div>-->
+
+		
+
+	</div>
+	
+	<!--<div data-role="footer" class="footer-docs" data-theme="c">-->
+			<!--<p>&copy; 2011 The jQuery Project</p>-->
+	<!--</div>	-->
+	
+</div>
+
+<%text> 
+<script type="text/x-jquery-tmpl" id="speaker-template"> 
+    <h3>${first_name} ${last_name}</h3>
+    <p style="font-size: 16px;">${desc}</p>
+</script>
+</%text>
+<%text> 
+<script type="text/x-jquery-tmpl" id="session-template"> 
+    {{if talk_type == 'sunrise'}}
+	${day} 
+    {{else}}
+    <a href="./index.html">
+	<h3> ${title}</h3>
+	<p style="margin-top:5px;">by <strong>${speaker_title} </strong> at <strong>${time_label} </strong> <strong>${talk_type}</strong> of ${duration} minutes </p>
+    </a>
+    {{/if}}
+</script>
+</%text>
+<%text> 
+<script type="text/x-jquery-tmpl" id="tweet-template"> 
+    <img src="${profile_pic}" style="float:left; margin: 15px;">
+    <h3>${screen_name}</h3>
+    <p>${text}</p>
+</script>
+</%text>
+</body>
+</html>
+
+<%doc>
+	<p class="ui-li-aside"><strong>${talk_type}:</strong> ${duration} minutes</p>
+</%doc>
