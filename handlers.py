@@ -11,6 +11,7 @@ from models import Conference, Session, Speaker
 from dateutil.parser import parse
 
 import logging
+import shopify
 
 log = logging.getLogger(__name__)
 
@@ -20,6 +21,8 @@ class BaseHandler(WebMessageHandler, MakoRendering):
 
     def prepare(self):
 	self.config = get_config()
+	shopify.Session.setup(api_key = self.config.get('shopify_apikey'),
+			    secret = self.config.get('shopify_secret'))
 	self.wsgi_request = Request(self)
 	self.wsgi_response = Response(self)
 	self.context = Context()
@@ -32,6 +35,67 @@ class BaseHandler(WebMessageHandler, MakoRendering):
 		    'c': self.context,
 		    }
 	return self.render_template(template_name, **context)
+
+class ShopifyHandler(BaseHandler):
+    def get(self):
+	request = self.wsgi_request
+	response = self.wsgi_response
+	c = self.context
+	#response.headers['content-type'] = 'application/json'
+
+	shop_url = request.params.get('shop')
+	shopify_params = {'shop': shop_url,
+			't': request.params.get('t'),
+			'timestamp': request.params.get('timestamp'),
+			'signature': request.params.get('signature')}
+
+	log.info('Login post handler... params: %s' % (shopify_params))
+	shopify_session = shopify.Session(shop_url, params = shopify_params)
+
+	#self.set_body('Login post handler... %s' % (shopify_session))
+	self.set_body('Login post handler... params: %s' % (shopify_params))
+	return self.render()
+	#return self.render_stuff('/')
+
+    def post(self):
+	request = self.wsgi_request
+	response = self.wsgi_response
+	c = self.context
+
+	shop_url = request.params.get('shop')
+	shopify_session = shopify.Session(shop_url, request.params)
+
+	self.set_body('Login post handler... %s' % (shopify_session))
+	#response.headers['content-type'] = 'application/json'
+	return self.render()
+
+class LoginHandler(BaseHandler):
+    def get(self):
+	request = self.wsgi_request
+	response = self.wsgi_response
+	c = self.context
+	#response.headers['content-type'] = 'application/json'
+
+	shop = request.params.get('shop')
+	if shop:
+	    permission_url = shopify.Session.create_permission_url(shop.strip())
+	    #return redirect(permission_url)
+	    self.set_body('Lets login.... perm url %s' % (permission_url))
+	    self.redirect(permission_url)
+	else:
+	    self.set_body('Lets login....')
+	return self.render()
+	#return self.render_stuff('/')
+
+    def post(self):
+	request = self.wsgi_request
+	response = self.wsgi_response
+	c = self.context
+
+	self.set_body('Login post handler...')
+	#response.headers['content-type'] = 'application/json'
+	return self.render()
+
 
 class SessionManagementHandler(BaseHandler):
     def get(self, id = None):

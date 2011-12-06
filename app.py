@@ -6,19 +6,23 @@ from brubeck.templating import load_mako_env
 from handlers import (ConferenceManagementHandler,
 		    SessionManagementHandler,
 		    SpeakerManagementHandler,
-		    IndexPageHandler)
+		    IndexPageHandler,
+		    ShopifyHandler,
+		    LoginHandler)
 import app_config
 
 # Routing config
 handler_tuples = [
-    (r'^/confs/(?P<id>\w+)', ConferenceManagementHandler),
-    (r'^/confs', ConferenceManagementHandler),
-    (r'^/sessions/(?P<id>\w+)', SessionManagementHandler),
-    (r'^/sessions', SessionManagementHandler),
-    (r'^/speakers/(?P<id>\w+)', SpeakerManagementHandler),
-    (r'^/speakers', SpeakerManagementHandler),
-    (r'^/(?P<conf_handle>\w+)', IndexPageHandler),
-    (r'^/$', IndexPageHandler),
+    (r'^/shopify_callback', ShopifyHandler),
+    (r'^/login', LoginHandler),
+    #(r'^/confs/(?P<id>\w+)', ConferenceManagementHandler),
+    #(r'^/confs', ConferenceManagementHandler),
+    #(r'^/sessions/(?P<id>\w+)', SessionManagementHandler),
+    #(r'^/sessions', SessionManagementHandler),
+    #(r'^/speakers/(?P<id>\w+)', SpeakerManagementHandler),
+    #(r'^/speakers', SpeakerManagementHandler),
+    #(r'^/(?P<conf_handle>\w+)', IndexPageHandler),
+    #(r'^/$', IndexPageHandler),
 ]
 
 _batty_config = app_config.get_config()
